@@ -1,0 +1,230 @@
+{
+  "_application-CIPDdUt4.js": {
+    "file": "assets/application-CIPDdUt4.js",
+    "name": "application",
+    "imports": [
+      "_general-EKVRape8.js"
+    ]
+  },
+  "_axios-DsPaXkF5.js": {
+    "file": "assets/axios-DsPaXkF5.js",
+    "name": "axios"
+  },
+  "_general-EKVRape8.js": {
+    "file": "assets/general-EKVRape8.js",
+    "name": "general"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-Cpov8j3Q.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-DWKGUw1S.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "imports": [
+      "_application-CIPDdUt4.js",
+      "_axios-DsPaXkF5.js",
+      "_general-EKVRape8.js"
+    ]
+  },
+  "resources/js/application.js": {
+    "file": "assets/application-l0sNRNKZ.js",
+    "name": "application",
+    "src": "resources/js/application.js",
+    "isEntry": true
+  },
+  "resources/js/bootstrap.js": {
+    "file": "assets/bootstrap-Dmx-wEGM.js",
+    "name": "bootstrap",
+    "src": "resources/js/bootstrap.js",
+    "isEntry": true,
+    "imports": [
+      "_axios-DsPaXkF5.js"
+    ]
+  },
+  "resources/js/general.js": {
+    "file": "assets/general-l0sNRNKZ.js",
+    "name": "general",
+    "src": "resources/js/general.js",
+    "isEntry": true
+  },
+  "resources/js/pages/account/change-password.js": {
+    "file": "assets/change-password-6f0d68Bo.js",
+    "name": "change-password",
+    "src": "resources/js/pages/account/change-password.js",
+    "isEntry": true,
+    "imports": [
+      "_general-EKVRape8.js"
+    ]
+  },
+  "resources/js/pages/account/change-profile.js": {
+    "file": "assets/change-profile-B7koWLL5.js",
+    "name": "change-profile",
+    "src": "resources/js/pages/account/change-profile.js",
+    "isEntry": true,
+    "imports": [
+      "_general-EKVRape8.js"
+    ]
+  },
+  "resources/js/pages/account/forgot-password.js": {
+    "file": "assets/forgot-password-DOvcCanG.js",
+    "name": "forgot-password",
+    "src": "resources/js/pages/account/forgot-password.js",
+    "isEntry": true,
+    "imports": [
+      "_general-EKVRape8.js"
+    ]
+  },
+  "resources/js/pages/account/profile.js": {
+    "file": "assets/profile-PK3ycXrp.js",
+    "name": "profile",
+    "src": "resources/js/pages/account/profile.js",
+    "isEntry": true
+  },
+  "resources/js/pages/account/reset-password.js": {
+    "file": "assets/reset-password-ez70GER8.js",
+    "name": "reset-password",
+    "src": "resources/js/pages/account/reset-password.js",
+    "isEntry": true,
+    "imports": [
+      "_general-EKVRape8.js"
+    ]
+  },
+  "resources/js/pages/account/sign-in-history.js": {
+    "file": "assets/sign-in-history-D7S78MTb.js",
+    "name": "sign-in-history",
+    "src": "resources/js/pages/account/sign-in-history.js",
+    "isEntry": true,
+    "imports": [
+      "_general-EKVRape8.js"
+    ]
+  },
+  "resources/js/pages/account/sign-in.js": {
+    "file": "assets/sign-in--8TPnq7p.js",
+    "name": "sign-in",
+    "src": "resources/js/pages/account/sign-in.js",
+    "isEntry": true,
+    "imports": [
+      "_general-EKVRape8.js"
+    ]
+  },
+  "resources/js/pages/account/sign-up.js": {
+    "file": "assets/sign-up-BYp-KLRb.js",
+    "name": "sign-up",
+    "src": "resources/js/pages/account/sign-up.js",
+    "isEntry": true,
+    "imports": [
+      "_general-EKVRape8.js"
+    ]
+  },
+  "resources/js/pages/account/verification-notice.js": {
+    "file": "assets/verification-notice-C9v4UjPc.js",
+    "name": "verification-notice",
+    "src": "resources/js/pages/account/verification-notice.js",
+    "isEntry": true,
+    "imports": [
+      "_general-EKVRape8.js"
+    ]
+  },
+  "resources/js/pages/basic/brand.js": {
+    "file": "assets/brand-Qr_DYHB-.js",
+    "name": "brand",
+    "src": "resources/js/pages/basic/brand.js",
+    "isEntry": true,
+    "imports": [
+      "_general-EKVRape8.js"
+    ]
+  },
+  "resources/js/pages/basic/category-sub.js": {
+    "file": "assets/category-sub-C7LPMuSY.js",
+    "name": "category-sub",
+    "src": "resources/js/pages/basic/category-sub.js",
+    "isEntry": true,
+    "imports": [
+      "_general-EKVRape8.js",
+      "_application-CIPDdUt4.js"
+    ]
+  },
+  "resources/js/pages/basic/category.js": {
+    "file": "assets/category-BaFMr1Tz.js",
+    "name": "category",
+    "src": "resources/js/pages/basic/category.js",
+    "isEntry": true,
+    "imports": [
+      "_general-EKVRape8.js"
+    ]
+  },
+  "resources/js/pages/basic/uom.js": {
+    "file": "assets/uom-G5n-a1le.js",
+    "name": "uom",
+    "src": "resources/js/pages/basic/uom.js",
+    "isEntry": true,
+    "imports": [
+      "_general-EKVRape8.js"
+    ]
+  },
+  "resources/js/pages/basic/warehouse-location.js": {
+    "file": "assets/warehouse-location-D72m6ceH.js",
+    "name": "warehouse-location",
+    "src": "resources/js/pages/basic/warehouse-location.js",
+    "isEntry": true,
+    "imports": [
+      "_general-EKVRape8.js"
+    ]
+  },
+  "resources/js/pages/basic/warehouse.js": {
+    "file": "assets/warehouse-ePLh8YEt.js",
+    "name": "warehouse",
+    "src": "resources/js/pages/basic/warehouse.js",
+    "isEntry": true,
+    "imports": [
+      "_general-EKVRape8.js"
+    ]
+  },
+  "resources/js/pages/config/access.js": {
+    "file": "assets/access-CsXGM8uH.js",
+    "name": "access",
+    "src": "resources/js/pages/config/access.js",
+    "isEntry": true,
+    "imports": [
+      "_general-EKVRape8.js"
+    ]
+  },
+  "resources/js/pages/config/role.js": {
+    "file": "assets/role-qhvSHbsf.js",
+    "name": "role",
+    "src": "resources/js/pages/config/role.js",
+    "isEntry": true,
+    "imports": [
+      "_general-EKVRape8.js"
+    ]
+  },
+  "resources/js/pages/config/user-access.js": {
+    "file": "assets/user-access-DqwJjh-L.js",
+    "name": "user-access",
+    "src": "resources/js/pages/config/user-access.js",
+    "isEntry": true,
+    "imports": [
+      "_application-CIPDdUt4.js",
+      "_general-EKVRape8.js"
+    ]
+  },
+  "resources/js/pages/config/user.js": {
+    "file": "assets/user-Ddyfc1yC.js",
+    "name": "user",
+    "src": "resources/js/pages/config/user.js",
+    "isEntry": true,
+    "imports": [
+      "_general-EKVRape8.js"
+    ]
+  },
+  "resources/js/pages/lov/common.js": {
+    "file": "assets/common-l0sNRNKZ.js",
+    "name": "common",
+    "src": "resources/js/pages/lov/common.js",
+    "isEntry": true
+  }
+}

@@ -1,0 +1,1 @@
+import{M as n,s as t}from"./general-EKVRape8.js";const o=document.querySelector("#formResend");function r(){n.Confirm("Continue?").then(e=>{t(!0,"#resend"),o.submit()}).catch(e=>{e&&console.log(e)})}document.addEventListener("DOMContentLoaded",function(){document.querySelector("#resend").addEventListener("click",function(e){e.preventDefault(),r()})});
