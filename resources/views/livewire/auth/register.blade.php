@@ -10,23 +10,29 @@
                 </div>
                 <div class="card-body">
                     <form wire:submit="register">
-                        <div class="form-group fv-row">
-                            <label class="form-label font-weight-normal mb-1">Email <span class="text-danger">*</span></label>
-                            <input type="email" wire:model="email" id="email" name="email" placeholder="Email"
-                                   value="{{ old('email') ?? '' }}" maxlength="255"
-                                   class="form-control font-weight-normal @error('email') is-invalid @enderror"
-                                   autocomplete="off" autofocus />
-                            @error('email')
-                                <span class="error invalid-feedback">{{ $message }}</span>
-                            @enderror
+                        <div class="d-none"
+                             wire:loading.class.remove="d-none" wire:target="register"
+                             style="z-index: 2; position: absolute; top: 0; bottom: 0; left: 0; right: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: rgba(0, 0, 0, 0.05);">
+                            <i class="fas fa-2x fa-sync-alt fa-spin"></i>
+                            <div class="text-md pt-2">Registering...</div>
                         </div>
                         <div class="form-group fv-row">
                             <label class="form-label font-weight-normal mb-1">Name <span class="text-danger">*</span></label>
                             <input type="text" wire:model="name" id="name" name="name" placeholder="Name"
-                                   value="{{ old('name') ?? '' }}" maxlength="255"
-                                   class="form-control font-weight-normal @error('name') is-invalid @enderror"
+                                   value="{{ old('name') ?? '' }}" maxlength="100"
+                                   class="form-control font-weight-normal form-maxlength @error('name') is-invalid @enderror"
                                    autocomplete="off" />
                             @error('name')
+                                <span class="error invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group fv-row">
+                            <label class="form-label font-weight-normal mb-1">Email <span class="text-danger">*</span></label>
+                            <input type="email" wire:model="email" id="email" name="email" placeholder="Email"
+                                   value="{{ old('email') ?? '' }}" maxlength="255"
+                                   class="form-control font-weight-normal form-maxlength @error('email') is-invalid @enderror"
+                                   autocomplete="off" autofocus />
+                            @error('email')
                                 <span class="error invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
@@ -40,15 +46,15 @@
                                     </button>
                                 </div>
                                 <input :type="showPassword ? 'text' : 'password'" wire:model="password" id="password" name="password" placeholder="Password"
-                                       value="{{ old('password') ?? '' }}" maxlength="255"
-                                       class="form-control font-weight-normal @error('password') is-invalid @enderror"
+                                       value="{{ old('password') ?? '' }}" maxlength="100"
+                                       class="form-control font-weight-normal form-maxlength @error('password') is-invalid @enderror"
                                        autocomplete="off" />
                                 @error('password')
                                     <span class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
-                        <div class="form-group fv-row mb-5">
+                        <div class="form-group fv-row">
                             <label class="form-label font-weight-normal mb-1">Confirm Password <span class="text-danger">*</span></label>
                             <div class="input-group" x-data="{ showPassword: false }">
                                 <div class="input-group-append">
@@ -58,8 +64,8 @@
                                     </button>
                                 </div>
                                 <input :type="showPassword ? 'text' : 'password'" wire:model="password_confirmation" id="password_confirmation" name="password_confirmation" placeholder="Confirm Password"
-                                       value="{{ old('password_confirmation') ?? '' }}" maxlength="255"
-                                       class="form-control font-weight-normal @error('password_confirmation') is-invalid @enderror"
+                                       value="{{ old('password_confirmation') ?? '' }}" maxlength="100"
+                                       class="form-control font-weight-normal form-maxlength @error('password_confirmation') is-invalid @enderror"
                                        autocomplete="off" />
                                 @error('password_confirmation')
                                     <span class="error invalid-feedback">{{ $message }}</span>
@@ -68,7 +74,7 @@
                         </div>
                         <div class="form-group fv-row">
                             <label class="form-label font-weight-normal mb-1">Timezone <span class="text-danger">*</span></label>
-                            <select wire:model="timezone" class="form-control font-weight-normal form-select2" id="timezone" name="timezone" data-allow-clear="false">
+                            <select wire:model="timezone" class="form-control font-weight-normal form-select2" id="timezone" name="timezone" data-allow-clear="false" wire:ignore>
                                 @foreach ($timezones as $timezone)
                                     <option value="{{ $timezone['value'] }}">{{ $timezone['text'] }}</option>
                                 @endforeach
@@ -78,9 +84,9 @@
                             @enderror
                         </div>
                         <div class="form-group mb-3">
-                            <button type="submit" class="btn btn-outline-success btn-block font-weight-bold" id="register" name="register">
-                                <span class="indicator-label"><i class="fas fa-edit mr-2"></i> Register</span>
-                                <span class="indicator-progress d-none">
+                            <button type="submit" class="btn btn-outline-success btn-block font-weight-bold" id="register" name="register" wire:loading.attr="disabled" wire:target="register">
+                                <span class="indicator-label" wire:loading.class="d-none" wire:target="register"><i class="fas fa-edit mr-2"></i> Register</span>
+                                <span class="indicator-progress d-none" wire:loading.class.remove="d-none" wire:target="register">
                                     <span class="spinner-border spinner-border-sm"></span>
                                 </span>
                             </button>
@@ -96,15 +102,9 @@
 </div>
 
 @script
-    <script type="text/javascript">
-        console.log('Register Component Loaded');
-        /*  $(document).ready(function() {
-             $('#timezone').select2({
-                 theme: 'bootstrap4',
-                 placeholder: 'Select Timezone',
-                 allowClear: true,
-                 width: '100%'
-             });
-         }); */
+    <script>
+        $wire.on('loading', function() {
+            console.log('test')
+        })
     </script>
 @endscript

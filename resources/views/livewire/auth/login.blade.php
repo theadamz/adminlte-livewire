@@ -54,7 +54,7 @@
                 </form>
                 @if (Route::has('password.request'))
                     <p class="mb-0">
-                        <a href="{{ route('password.request') }}" class="text-sm">Forgot Password?</a>
+                        <a wire:navigate href="{{ route('password.request') }}" class="text-sm">Forgot Password?</a>
                     </p>
                 @endif
                 @if (Route::has('register'))

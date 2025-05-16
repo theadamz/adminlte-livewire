@@ -493,7 +493,10 @@ export function getConfigBlockUIElement(target = null, message = 'Please wait...
     });
 }
 
-export function initMaxLength(element = null, appendToParent = false) {
+export function initMaxLength({
+    element = null,
+    appendToParent = false
+}) {
     $(element).maxlength({
         warningClass: "badge badge-success badge-rounded badge-inline",
         limitReachedClass: "badge badge-danger badge-rounded badge-inline",
@@ -587,7 +590,15 @@ export function axiosCustom(URLAddress = null, method = 'GET', data2Send = null,
     });
 }
 
-export function initSelect2(element, placeholder = "Select", minimumInputLength = null, allowClear = true, multiple = false, closeOnSelect = true, theme = 'bootstrap4') {
+export function initSelect2({
+    element,
+    placeholder = "Select",
+    minimumInputLength = null,
+    allowClear = true,
+    multiple = false,
+    closeOnSelect = true,
+    theme = 'bootstrap4'
+}) {
     const dataHideSearch = document.querySelector(element).getAttribute('data-hide-search');
     const dataAllowClear = document.querySelector(element).getAttribute('data-allow-clear');
     const dataDropDownParent = document.querySelector(element).getAttribute('data-dropdown-parent');

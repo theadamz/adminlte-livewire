@@ -3,8 +3,8 @@
 namespace App\Livewire\Auth;
 
 use App\Helpers\GeneralHelper;
-use Illuminate\Support\Facades\Vite;
-use Livewire;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Password;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -13,22 +13,26 @@ use Livewire\Component;
 #[Title('Register')]
 class Register extends Component
 {
-
-    public string $email, $name, $password, $password_confirmation, $timezone;
     protected array $timezones = [];
+    public string $email, $name, $password, $password_confirmation, $timezone;
 
     protected function rules(): array
     {
+        $password = !app()->isProduction() ? Password::min(6) : Password::min(8)->letters()->mixedCase()->numbers()->symbols()->uncompromised();
+
         return [
-            'email' => ['required', 'email', 'min:3', 'max:255'],
-            'password' => ['required', 'min:8', 'max:255'],
-            'remember' => ['boolean'],
+            'email' => ['required', 'email', 'min:3', 'max:255', Rule::unique('users', 'email')],
+            'name' => ['required', 'string', 'min:3', 'max:100'],
+            'password' => ['required', 'min:8', 'max:100', 'confirmed', $password],
         ];
     }
 
     public function register(): void
     {
-        dd($this->all());
+        $this->validate();
+        $this->resetValidation();
+
+        debug($this->all());
     }
 
     public function mount(): void
@@ -47,9 +51,13 @@ class Register extends Component
 
     public function render()
     {
-
         return view('livewire.auth.register', [
-            'timezones' => $this->timezones
+            'timezones' => $this->timezones,
         ]);
+    }
+
+    public function rendered(): void
+    {
+        $this->dispatch('initialize-js-component');
     }
 }
