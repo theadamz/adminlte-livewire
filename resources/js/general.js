@@ -62,122 +62,115 @@ export function setThemeMode(mode = 'light-mode') {
     }
 }
 
+export const Confirmation = ({
+    message = 'Are you sure?',
+    title = 'Confirmation',
+    type = 'question'
+}) => {
+    return Swal.fire({
+        title: !title ? 'Confirmation' : title,
+        html: message,
+        icon: !type ? 'question' : type,
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+        cancelButtonText: "No",
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        customClass: {
+            confirmButton: "font-weight-bold px-6 py-2",
+            cancelButton: "font-weight-bold px-6 py-2"
+        },
+        didOpen: () => {
+            // add class
+            document.querySelector('.swal2-title').classList.add('h4');
+            document.querySelector('.swal2-html-container').classList.add('text-md');
+            document.querySelector('.swal2-actions').classList.add('text-md');
+        },
+    });
+}
+
+export const Notification = ({
+    message = 'Are you sure?',
+    title = 'Confirmation',
+    type = 'question'
+}) => {
+    Swal.fire({
+        title: !title ? 'Confirmation' : title,
+        html: message,
+        icon: !type ? 'question' : type,
+        // buttonsStyling: false,
+        confirmButtonText: "Close",
+        confirmButtonColor: "#3085d6",
+        customClass: {
+            confirmButton: "font-weight-bold px-6 py-2",
+        },
+        didOpen: () => {
+            // add class
+            document.querySelector('.swal2-title').classList.add('h4');
+            document.querySelector('.swal2-html-container').classList.add('text-md');
+            document.querySelector('.swal2-actions').classList.add('text-md');
+
+            setTimeout(() => {
+                $('.swal2-confirm').focus();
+            }, 300);
+        },
+    });
+}
+
+export function loadingProcess(showProcess = true, titleMessage = "Please wait", messageHtml = "Processing...", messageTimer = null) {
+    if (showProcess) {
+        Swal.fire({
+            title: titleMessage,
+            html: messageHtml,
+            timer: messageTimer,
+            confirmButtonColor: "#7a6fbe",
+            allowOutsideClick: false,
+            didOpen: function () {
+                // add class
+                document.querySelector('.swal2-title').classList.add('h4');
+                document.querySelector('.swal2-html-container').classList.add('text-md');
+                document.querySelector('.swal2-actions').classList.add('text-md');
+
+                Swal.showLoading();
+            },
+        });
+    } else {
+        Swal.close();
+    }
+}
+
+export function loadingProcessWithTimer(showProcess = true, titleMessage = "Please wait", messageTimer = 2000) {
+    if (showProcess) {
+        Swal.fire({
+            title: titleMessage,
+            html: 'Time elapsed: <strong></strong>',
+            timer: messageTimer,
+            allowOutsideClick: false,
+            didOpen: () => {
+                // add class
+                document.querySelector('.swal2-title').classList.add('h4');
+                document.querySelector('.swal2-html-container').classList.add('text-md');
+                document.querySelector('.swal2-actions').classList.add('text-md');
+
+                Swal.showLoading();
+
+                timerInterval = setInterval(() => {
+                    Swal.increaseTimer(2000);
+                    Swal.getHtmlContainer().querySelector('strong').textContent = secondsToPrettyTime((Swal.getTimerLeft() / 1000).toFixed(0));
+                }, 1000)
+            },
+            willClose: () => {
+                clearInterval(timerInterval);
+            }
+        });
+    } else {
+        Swal.close();
+    }
+}
+
 // ========================== ./ Theme mode
 
 // ========================== Datatables
-
-export const MsgBox = {
-    Notification: function (notifMsg = '', notifTitle = "Warning", notifType = 'warning') {
-        Swal.fire({
-            title: notifTitle,
-            text: notifMsg,
-            icon: notifType,
-            // buttonsStyling: false,
-            confirmButtonText: "Close",
-            confirmButtonColor: "#3085d6",
-            customClass: {
-                confirmButton: "font-weight-bold px-6 py-2",
-            },
-            didOpen: () => {
-                // add class
-                document.querySelector('.swal2-title').classList.add('h4');
-                document.querySelector('.swal2-html-container').classList.add('text-md');
-                document.querySelector('.swal2-actions').classList.add('text-md');
-
-                setTimeout(() => {
-                    $('.swal2-confirm').focus();
-                }, 300);
-            },
-        });
-    },
-    HtmlNotification: function (notifMsg = '', notifTitle = "Warning", notifType = 'warning') {
-        Swal.fire({
-            title: notifTitle,
-            html: notifMsg,
-            icon: notifType,
-            // buttonsStyling: false,
-            confirmButtonText: "Close",
-            confirmButtonColor: "#3085d6",
-            customClass: {
-                confirmButton: "font-weight-bold px-6 py-2",
-            },
-            didOpen: () => {
-                // add class
-                document.querySelector('.swal2-title').classList.add('h4');
-                document.querySelector('.swal2-html-container').classList.add('text-md');
-                document.querySelector('.swal2-actions').classList.add('text-md');
-
-                setTimeout(() => {
-                    $('.swal2-confirm').focus();
-                }, 300);
-            },
-        });
-    },
-    Confirm: function (MsgConfirm = '', confirmTitle = 'Confirmation', confirmType = 'question', useCancelButton = true) {
-        return new Promise(function (resolve, reject) {
-            Swal.fire({
-                title: !confirmTitle ? 'Confirmation' : confirmTitle,
-                text: MsgConfirm,
-                icon: confirmType,
-                showCancelButton: useCancelButton,
-                confirmButtonText: "Yes",
-                cancelButtonText: "No",
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                customClass: {
-                    confirmButton: "font-weight-bold px-6 py-2",
-                    cancelButton: "font-weight-bold px-6 py-2"
-                },
-                didOpen: () => {
-                    // add class
-                    document.querySelector('.swal2-title').classList.add('h4');
-                    document.querySelector('.swal2-html-container').classList.add('text-md');
-                    document.querySelector('.swal2-actions').classList.add('text-md');
-
-                    setTimeout(() => {
-                        $('.swal2-confirm').focus();
-                    }, 300);
-                },
-            }).then(function (t) {
-                if (t.value) {
-                    resolve(true);
-                } else {
-                    reject(false);
-                }
-            });
-        });
-    },
-    ConfirmHtml: function (MsgConfirm = '', confirmTitle = 'Confirmation', confirmType = 'question', useCancelButton = true) {
-        return new Promise(function (resolve, reject) {
-            Swal.fire({
-                title: !confirmTitle ? 'Confirmation' : confirmTitle,
-                html: MsgConfirm,
-                icon: confirmType,
-                showCancelButton: useCancelButton,
-                confirmButtonText: "Yes",
-                cancelButtonText: "No",
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                customClass: {
-                    confirmButton: "font-weight-bold px-6 py-2",
-                    cancelButton: "font-weight-bold px-6 py-2"
-                },
-                didOpen: () => {
-                    // add class
-                    document.querySelector('.swal2-title').classList.add('h4');
-                    document.querySelector('.swal2-html-container').classList.add('text-md');
-                    document.querySelector('.swal2-actions').classList.add('text-md');
-                },
-            }).then(function (t) {
-                if (t.value) {
-                    resolve(true);
-                } else {
-                    reject(false);
-                }
-            });
-        });
-    },
-};
 
 export function initDataTableSearch(dataTable = null, searchElement = null) {
     if (!searchElement) return;
@@ -502,57 +495,6 @@ export function initMaxLength({
         limitReachedClass: "badge badge-danger badge-rounded badge-inline",
         appendToParent: appendToParent
     });
-}
-
-export function loadingProcess(showProcess = true, titleMessage = "Please wait", messageHtml = "Processing...", messageTimer = null) {
-    if (showProcess) {
-        Swal.fire({
-            title: titleMessage,
-            html: messageHtml,
-            timer: messageTimer,
-            confirmButtonColor: "#7a6fbe",
-            allowOutsideClick: false,
-            didOpen: function () {
-                // add class
-                document.querySelector('.swal2-title').classList.add('h4');
-                document.querySelector('.swal2-html-container').classList.add('text-md');
-                document.querySelector('.swal2-actions').classList.add('text-md');
-
-                Swal.showLoading();
-            },
-        });
-    } else {
-        Swal.close();
-    }
-}
-
-export function loadingProcessWithTimer(showProcess = true, titleMessage = "Please wait", messageTimer = 2000) {
-    if (showProcess) {
-        Swal.fire({
-            title: titleMessage,
-            html: 'Time elapsed: <strong></strong>',
-            timer: messageTimer,
-            allowOutsideClick: false,
-            didOpen: () => {
-                // add class
-                document.querySelector('.swal2-title').classList.add('h4');
-                document.querySelector('.swal2-html-container').classList.add('text-md');
-                document.querySelector('.swal2-actions').classList.add('text-md');
-
-                Swal.showLoading();
-
-                timerInterval = setInterval(() => {
-                    Swal.increaseTimer(2000);
-                    Swal.getHtmlContainer().querySelector('strong').textContent = secondsToPrettyTime((Swal.getTimerLeft() / 1000).toFixed(0));
-                }, 1000)
-            },
-            willClose: () => {
-                clearInterval(timerInterval);
-            }
-        });
-    } else {
-        Swal.close();
-    }
 }
 
 export function secondsToPrettyTime(seconds = 0) {

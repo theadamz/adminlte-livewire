@@ -6,6 +6,7 @@ use App\Helpers\GeneralHelper;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
@@ -29,10 +30,23 @@ class Register extends Component
 
     public function register(): void
     {
-        $this->validate();
         $this->resetValidation();
+        $this->validate();
 
+        $this->dispatch('confirm', method: "store", message: "Are you sure want continue?", title: "Register New User", type: "question");
+        // $this->dispatch('confirm', method: "store", message: "Are you sure want ?", title: "Register New User", type: "question", parameters: ["value param 1", "value param 1", 25000]); // with parameters
+        // $this->dispatch('confirm', dispatch: "registering", message: "Are you sure want continue?", title: "Register New User", type: "question"); // dispatch
+    }
+
+    #[On('registering')]
+    public function store(): void
+    {
         debug($this->all());
+    }
+
+    public function test(string $param1, string $param2, int $param3): void
+    {
+        debug($param1, $param2, $param3);
     }
 
     public function mount(): void
@@ -58,6 +72,6 @@ class Register extends Component
 
     public function rendered(): void
     {
-        $this->dispatch('initialize-js-component');
+        $this->dispatch('init-js-component');
     }
 }

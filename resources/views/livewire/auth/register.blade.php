@@ -11,10 +11,11 @@
                 <div class="card-body">
                     <form wire:submit="register">
                         <div class="d-none"
-                             wire:loading.class.remove="d-none" wire:target="register"
+                             wire:loading.class.remove="d-none" wire:target="register, store"
                              style="z-index: 2; position: absolute; top: 0; bottom: 0; left: 0; right: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: rgba(0, 0, 0, 0.05);">
                             <i class="fas fa-2x fa-sync-alt fa-spin"></i>
-                            <div class="text-md pt-2">Registering...</div>
+                            <div class="text-md pt-2 d-none" wire:loading.class.remove="d-none" wire:target="register">Checking...</div>
+                            <div class="text-md pt-2 d-none" wire:loading.class.remove="d-none" wire:target="store">Registering...</div>
                         </div>
                         <div class="form-group fv-row">
                             <label class="form-label font-weight-normal mb-1">Name <span class="text-danger">*</span></label>
@@ -84,9 +85,11 @@
                             @enderror
                         </div>
                         <div class="form-group mb-3">
-                            <button type="submit" class="btn btn-outline-success btn-block font-weight-bold" id="register" name="register" wire:loading.attr="disabled" wire:target="register">
-                                <span class="indicator-label" wire:loading.class="d-none" wire:target="register"><i class="fas fa-edit mr-2"></i> Register</span>
-                                <span class="indicator-progress d-none" wire:loading.class.remove="d-none" wire:target="register">
+                            <button type="submit" id="btnRegister" name="btnRegister"
+                                    wire:loading.attr="disabled" wire:target="register, store"
+                                    class="btn btn-outline-success btn-block font-weight-bold">
+                                <span class="indicator-label" wire:loading.class="d-none" wire:target="register, store"><i class="fas fa-edit mr-2"></i> Register</span>
+                                <span class="indicator-progress d-none" wire:loading.class.remove="d-none" wire:target="register, store">
                                     <span class="spinner-border spinner-border-sm"></span>
                                 </span>
                             </button>
@@ -100,11 +103,3 @@
         </div>
     </div>
 </div>
-
-@script
-    <script>
-        $wire.on('loading', function() {
-            console.log('test')
-        })
-    </script>
-@endscript
