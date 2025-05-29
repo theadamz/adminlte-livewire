@@ -10,6 +10,9 @@
             </div>
             <div class="card-body">
                 <form wire:submit="login">
+                    <div wire:loading>
+                        <x-widgets.loading-overlay />
+                    </div>
                     <div class="form-group">
                         <div class="input-group">
                             <div class="input-group-append">
@@ -70,8 +73,15 @@
         <div class="d-flex flex-row justify-content-between mt-1 px-2 py-2">
             <div class="float-left">
                 <div class="d-flex flex-row">
-                    <a href="{{ url('/') }}" class="mr-3 font-weight-bold text-sm text-secondary">Home</a>
+                    <a wire:navigate href="{{ url('/') }}" class="font-weight-bold text-sm text-secondary">Home</a>
+                    <div class="border-left text-center mx-2">&nbsp;</div>
                     <a href="mailto:theadamz91@gmail.com" class="font-weight-bold text-sm text-secondary">Contact</a>
+                    <div class="border-left text-center mx-2">&nbsp;</div>
+                    <a wire:navigate href="{{ route('register') }}" class="font-weight-bold text-sm text-secondary">Register</a>
+                    <div class="border-left text-center mx-2">&nbsp;</div>
+                    <a href="javascript:;" role="button" title="Change theme" id="changeTheme" class="text-secondary">
+                        <i class="fas fa-moon"></i>
+                    </a>
                 </div>
             </div>
             <div class="float-right">

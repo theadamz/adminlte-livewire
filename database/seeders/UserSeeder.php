@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
             'password' => '12345678',
             'email_verified_at' => now(),
             'is_active' => true,
+            'def_route' => '/dashboard',
         ]);
 
         User::create([
@@ -29,6 +30,7 @@ class UserSeeder extends Seeder
             'password' => '12345678',
             'email_verified_at' => now(),
             'is_active' => true,
+            'def_route' => '/dashboard',
         ]);
     }
 }

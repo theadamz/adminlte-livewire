@@ -3,6 +3,9 @@
 namespace App\Livewire\Auth;
 
 use App\Helpers\GeneralHelper;
+use App\Models\User;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 use Livewire\Attributes\Layout;
@@ -14,7 +17,7 @@ use Livewire\Component;
 #[Title('Register')]
 class Register extends Component
 {
-    protected array $timezones = [];
+    public array $timezones = [];
     public string $email, $name, $password, $password_confirmation, $timezone;
 
     protected function rules(): array
@@ -41,7 +44,21 @@ class Register extends Component
     #[On('registering')]
     public function store(): void
     {
-        debug($this->all());
+        // get validated data
+        $validated = $this->pull();
+        $validated['password'] = Hash::make($validated['password']);
+
+        // save
+        $user = new User($validated);
+        $user->def_route = '/dashboard';
+        $user->save();
+
+        // send email verification
+        event(new Registered($user));
+
+        $this->redirect(route('login'), navigate: true);
+
+        $this->dispatch('notify', message: "Verification link sent to " . $validated['email'] . ", please check your mail.", title: "Registration Success", type: "success");
     }
 
     public function test(string $param1, string $param2, int $param3): void
@@ -60,13 +77,6 @@ class Register extends Component
         // js
         GeneralHelper::addAdditionalJS([
             'resources/js/modules/auth/register.js'
-        ]);
-    }
-
-    public function render()
-    {
-        return view('livewire.auth.register', [
-            'timezones' => $this->timezones,
         ]);
     }
 

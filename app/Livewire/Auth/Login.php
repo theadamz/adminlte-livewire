@@ -30,13 +30,21 @@ class Login extends Component
         ];
     }
 
+    public function mount(): void
+    {
+        // if user already sign in then redirect to their default path
+        if (Auth::check()) {
+            $this->redirectIntended(default: Session::get('def_route'), navigate: true);
+        }
+    }
+
     public function login(): void
     {
         $this->validate();
 
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt(['email' => $this->email, 'password' => $this->password, 'is_active' => true], $this->remember)) {
+        if (!Auth::attempt(['email' => $this->email, 'password' => $this->password, 'is_active' => true], $this->remember)) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
@@ -47,7 +55,28 @@ class Login extends Component
         RateLimiter::clear($this->throttleKey());
         Session::regenerate();
 
-        $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
+        // get user
+        $user = Auth::user();
+
+        // save user info in session
+        Session::put('name', $user->name);
+        Session::put('email', $user->email);
+        Session::put('def_route', $user->def_route);
+        Session::put('timezone', $user->timezone);
+
+        // update last login
+        $user->update(['last_login_at' => now()]);
+
+        // check if user already verified email
+        if (!Auth::user()->hasVerifiedEmail()) {
+            $this->redirectIntended(default: route('verification.notice', absolute: false), navigate: true);
+        }
+
+        // show loading
+        $this->dispatch('loading', message: 'Redirecting...');
+
+        // redirect
+        $this->redirectIntended(default: $user->def_route, navigate: true);
     }
 
     /**

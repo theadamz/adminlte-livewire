@@ -92,12 +92,12 @@ export const Confirmation = ({
 export const Notification = ({
     message = 'Are you sure?',
     title = 'Confirmation',
-    type = 'question'
+    type = 'info'
 }) => {
     Swal.fire({
         title: !title ? 'Confirmation' : title,
         html: message,
-        icon: !type ? 'question' : type,
+        icon: !type ? 'info' : type,
         // buttonsStyling: false,
         confirmButtonText: "Close",
         confirmButtonColor: "#3085d6",
@@ -117,14 +117,20 @@ export const Notification = ({
     });
 }
 
-export function loadingProcess(showProcess = true, titleMessage = "Please wait", messageHtml = "Processing...", messageTimer = null) {
-    if (showProcess) {
+export function LoadingProgress({
+    show = true,
+    title = "Please wait",
+    message = "Processing...",
+    timer = null
+}) {
+    if (show) {
         Swal.fire({
-            title: titleMessage,
-            html: messageHtml,
-            timer: messageTimer,
+            title: title ? title : "Please wait",
+            html: message ? message : "Processing...",
+            timer: timer ? timer : null,
             confirmButtonColor: "#7a6fbe",
             allowOutsideClick: false,
+            allowEscapeKey: false,
             didOpen: function () {
                 // add class
                 document.querySelector('.swal2-title').classList.add('h4');
@@ -139,13 +145,14 @@ export function loadingProcess(showProcess = true, titleMessage = "Please wait",
     }
 }
 
-export function loadingProcessWithTimer(showProcess = true, titleMessage = "Please wait", messageTimer = 2000) {
+export function LoadingProgressWithTimer(showProcess = true, titleMessage = "Please wait", messageTimer = 2000) {
     if (showProcess) {
         Swal.fire({
             title: titleMessage,
             html: 'Time elapsed: <strong></strong>',
             timer: messageTimer,
             allowOutsideClick: false,
+            allowEscapeKey: false,
             didOpen: () => {
                 // add class
                 document.querySelector('.swal2-title').classList.add('h4');
@@ -1241,3 +1248,5 @@ export function isInt(n) {
 export function isFloat(n) {
     return Number(n) === n && n % 1 !== 0;
 }
+
+export const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))

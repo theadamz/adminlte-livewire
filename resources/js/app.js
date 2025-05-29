@@ -3,20 +3,30 @@ import {
     Confirmation,
     initMaxLength,
     initSelect2,
-    initThemeMode
+    initThemeMode,
+    LoadingProgress,
+    Notification
 } from './general';
 
 // global object for custom javascript because separated JS file cannot access $wire object like in component view
 window.$wire;
 
 // Runs after Livewire is loaded but before it's initialized
-document.addEventListener('livewire:init', () => {
-    // sweetalert confirmation
+document.addEventListener('livewire:init', (e) => {
+    // sweetalert
     Livewire.on('confirm', confirmEvent);
+    Livewire.on('notify', notifEvent);
+    Livewire.on('loading', loadingEvent);
+    Livewire.on('loading-hide', loadingHideEvent);
+
+    // set global object for $wire so that $wire can be access by other separated JS file
+    setTimeout(() => {
+        window.$wire = Livewire.first();
+    }, 100);
 });
 
 // Runs immediately after Livewire has finished initializing
-document.addEventListener('livewire:initialized', function () {
+document.addEventListener('livewire:initialized', function (e) {
     // set global object for $wire so that $wire can be access by other separated JS file
     window.$wire = Livewire.first();
 
@@ -31,7 +41,7 @@ document.addEventListener('livewire:initialized', function () {
 });
 
 // Triggered as the final step of any page navigation...
-document.addEventListener('livewire:navigated', function () {
+document.addEventListener('livewire:navigated', function (e) {
     // initialize common libraries after navigate to other route
     initCommonLibraries();
 });
@@ -103,4 +113,27 @@ function executeDispatch(data) {
     } else {
         Livewire.dispatch(data.dispatch);
     }
+}
+
+function notifEvent(data) {
+    Notification({
+        message: data.message,
+        title: data.title,
+        type: data.type,
+    });
+}
+
+function loadingEvent(data) {
+    LoadingProgress({
+        show: true,
+        title: data.title,
+        message: data.message,
+        timer: data.timer
+    });
+}
+
+function loadingHideEvent() {
+    LoadingProgress({
+        show: false
+    });
 }
