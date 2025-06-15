@@ -5,9 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ empty($title) ? config('setting.general.web_name') : $title . ' - ' . config('setting.general.web_name') }}</title>
+    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" />
     @once
         @assets
-            <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" />
             <link rel="stylesheet" href="{{ asset('assets/vendor/font/inter.css') }}" type="text/css" />
             <link rel="stylesheet" href="{{ asset('assets/vendor/plugins/fontawesome-free/css/all.min.css') }}" type="text/css" />
             <link rel="stylesheet" href="{{ asset('assets/vendor/css/adminlte.min.css') }}" type="text/css" />

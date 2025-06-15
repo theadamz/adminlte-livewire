@@ -20,7 +20,7 @@
                                     <span class="fas fa-envelope"></span>
                                 </div>
                             </div>
-                            <input type="text" wire:model="email" placeholder="Email" maxlength="255" value="{{ old('email') ?? '' }}" class="form-control @error('email') is-invalid @enderror" autofocus />
+                            <input type="text" wire:model="email" placeholder="Email" maxlength="255" class="form-control @error('email') is-invalid @enderror" autofocus />
                             @error('email')
                                 <span class="error invalid-feedback">{{ $message }}</span>
                             @enderror
@@ -34,7 +34,7 @@
                                     <i class="fas fa-eye-slash" x-show="showPassword"></i>
                                 </button>
                             </div>
-                            <input :type="showPassword ? 'text' : 'password'" wire:model="password" placeholder="Password" maxlength="255" autocomplete="off" value="{{ old('password') ?? '' }}" class="form-control @error('password') is-invalid @enderror" />
+                            <input :type="showPassword ? 'text' : 'password'" wire:model="password" placeholder="Password" maxlength="255" autocomplete="off" class="form-control @error('password') is-invalid @enderror" />
                             @error('password')
                                 <span class="error invalid-feedback">{{ $message }}</span>
                             @enderror

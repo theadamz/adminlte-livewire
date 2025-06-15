@@ -13,9 +13,6 @@ class Logout extends Component
      */
     public function __invoke()
     {
-        // show loading
-        $this->dispatch('loading', message: 'Logout...');
-
         Auth::guard('web')->logout();
 
         Session::invalidate();

@@ -22,7 +22,7 @@ class Register extends Component
 
     protected function rules(): array
     {
-        $password = !app()->isProduction() ? Password::min(6) : Password::min(8)->letters()->mixedCase()->numbers()->symbols()->uncompromised();
+        $password = !app()->isProduction() ? Password::min(8) : Password::min(8)->letters()->mixedCase()->numbers()->symbols()->uncompromised();
 
         return [
             'email' => ['required', 'email', 'min:3', 'max:255', Rule::unique('users', 'email')],

@@ -1,8 +1,7 @@
 <?php
 
 return [
-    'userIdExceptions' => ['00000000-0000-0000-0000-000000000000', '00000000-0000-0000-0000-000000000001'],
-    'roleIdExceptions' => ['00000000-0000-0000-0000-000000000000', '00000000-0000-0000-0000-000000000001'],
+    'user_id_exceptions' => ['00000000-0000-0000-0000-000000000000', '00000000-0000-0000-0000-000000000001'],
     'groups' => [
         ['code' => 'basic', 'name' => 'Basic', 'visible' => true],
         ['code' => 'setting', 'name' => 'Setting', 'visible' => true],
@@ -27,14 +26,13 @@ return [
             'icon' => 'fas fa-cog',
             'visible' => true,
             'children' => [
-                ['group_code' => 'setting', 'parent_menu_code' => 'config', 'code' => 'config-role', 'name' => 'Roles', 'description' => 'Roles', 'path' => '/configs/roles', 'icon' => 'fas fa-users', 'visible' => true,  'children' => null],
                 ['group_code' => 'setting', 'parent_menu_code' => 'config', 'code' => 'config-role-access', 'name' => 'Role Accesses', 'description' => 'Role Accesses', 'path' => '/configs/accesses', 'icon' => 'fas fa-user-cog', 'visible' => true,  'children' => null],
                 ['group_code' => 'setting', 'parent_menu_code' => 'config', 'code' => 'config-user', 'name' => 'Users', 'description' => 'Users', 'path' => '/configs/users', 'icon' => 'fas fa-user-plus', 'visible' => true,  'children' => null],
                 ['group_code' => 'setting', 'parent_menu_code' => 'config', 'code' => 'config-user-access', 'name' => 'User Accesses', 'description' => 'User Accesses', 'path' => '/configs/user-accesses', 'icon' => 'fas fa-user-cog', 'visible' => true,  'children' => null],
             ],
         ],
     ],
-    'roleList' => [
+    'access_list' => [
         /* ========== Access Menu ========== */
         /* Basic Data */
         ['code' => 'category', 'name' => 'Category', 'permissions' => ['read', 'create', 'edit', 'delete', 'import', 'export']],
@@ -52,8 +50,5 @@ return [
         ['code' => 'config-role-access', 'name' => 'Menu Configurations - Role Accesses', 'permissions' => ['read', 'create', 'edit', 'delete']],
         ['code' => 'config-user', 'name' => 'Menu Configurations - Users', 'permissions' => ['read', 'create', 'edit', 'delete']],
         ['code' => 'config-user-access', 'name' => 'Menu Configurations - User Accesses', 'permissions' => ['read', 'create', 'edit', 'delete']],
-    ],
-    'userList' => [
-        ['code' => 'item', 'name' => 'Items', 'permissions' => ['uom-conversion', 'sell-price']],
     ],
 ];

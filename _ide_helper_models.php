@@ -11,6 +11,91 @@
  */
 
 
+namespace App\Models\Config{
+/**
+ * 
+ *
+ * @property string $id
+ * @property string $user_id
+ * @property string $code
+ * @property string $permission read,edit,delete,validation,etc
+ * @property bool $is_allowed
+ * @property string|null $created_by
+ * @property string|null $updated_by
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Access newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Access newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Access query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Access whereCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Access whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Access whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Access whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Access whereIsAllowed($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Access wherePermission($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Access whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Access whereUpdatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Access whereUserId($value)
+ */
+	class Access extends \Eloquent {}
+}
+
+namespace App\Models\Config{
+/**
+ * 
+ *
+ * @property string $id
+ * @property string $name
+ * @property string|null $description
+ * @property string|null $created_by
+ * @property string|null $updated_by
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Config\AccessTemplateDetail> $details
+ * @property-read int|null $details_count
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AccessTemplate newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AccessTemplate newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AccessTemplate query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AccessTemplate whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AccessTemplate whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AccessTemplate whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AccessTemplate whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AccessTemplate whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AccessTemplate whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AccessTemplate whereUpdatedBy($value)
+ */
+	class AccessTemplate extends \Eloquent {}
+}
+
+namespace App\Models\Config{
+/**
+ * 
+ *
+ * @property string $id
+ * @property string $access_template_id
+ * @property string $code
+ * @property string $permission read,edit,delete,validation,etc
+ * @property bool $is_allowed
+ * @property string|null $created_by
+ * @property string|null $updated_by
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AccessTemplateDetail newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AccessTemplateDetail newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AccessTemplateDetail query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AccessTemplateDetail whereAccessTemplateId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AccessTemplateDetail whereCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AccessTemplateDetail whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AccessTemplateDetail whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AccessTemplateDetail whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AccessTemplateDetail whereIsAllowed($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AccessTemplateDetail wherePermission($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AccessTemplateDetail whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AccessTemplateDetail whereUpdatedBy($value)
+ */
+	class AccessTemplateDetail extends \Eloquent {}
+}
+
 namespace App\Models{
 /**
  * 

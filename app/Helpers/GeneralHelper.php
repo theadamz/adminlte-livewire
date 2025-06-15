@@ -393,18 +393,24 @@ class GeneralHelper
         return Number::format(number: $value, precision: $precision);
     }
 
-    public static function dateFormat(DateTime $datetime, ?string $timezone = null): string
+    public static function dateFormat(?DateTime $datetime, ?string $timezone = null): string
     {
+        if (empty($datetime)) return "";
+
         return Date::parse($datetime)->setTimezone($timezone ?? session('timezone'))->format(config('setting.local.backend_date_format'));
     }
 
-    public static function timeFormat(DateTime $datetime, ?string $timezone = null): string
+    public static function timeFormat(?DateTime $datetime, ?string $timezone = null): string
     {
+        if (empty($datetime)) return "";
+
         return Date::parse($datetime)->setTimezone($timezone ?? session('timezone'))->format(config('setting.local.backend_time_format'));
     }
 
-    public static function dateTimeFormat(DateTime $datetime, ?string $format = null, ?string $timezone = null): string
+    public static function dateTimeFormat(?DateTime $datetime, ?string $format = null, ?string $timezone = null): string
     {
+        if (empty($datetime)) return "";
+
         return Date::parse($datetime)->setTimezone($timezone ?? session('timezone'))->format($format ?? config('setting.local.backend_datetime_format'));
     }
 

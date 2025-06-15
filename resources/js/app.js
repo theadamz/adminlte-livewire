@@ -11,6 +11,22 @@ import {
 // global object for custom javascript because separated JS file cannot access $wire object like in component view
 window.$wire;
 
+document.addEventListener('alpine:init', () => {
+    // global state for in progress navigate
+    Alpine.store('navigate', {
+        loading: true,
+        to: null,
+        start(url) {
+            this.loading = true;
+            this.to = url;
+        },
+        stop() {
+            this.loading = false;
+            this.to = null;
+        }
+    });
+});
+
 // Runs after Livewire is loaded but before it's initialized
 document.addEventListener('livewire:init', (e) => {
     // sweetalert
@@ -19,8 +35,8 @@ document.addEventListener('livewire:init', (e) => {
     Livewire.on('loading', loadingEvent);
     Livewire.on('loading-hide', loadingHideEvent);
 
-    // set global object for $wire so that $wire can be access by other separated JS file
     setTimeout(() => {
+        // set global object for $wire so that $wire can be access by other separated JS file
         window.$wire = Livewire.first();
     }, 100);
 });
@@ -40,10 +56,21 @@ document.addEventListener('livewire:initialized', function (e) {
     });
 });
 
+// Triggered as the first step of any page navigation...
+document.addEventListener('livewire:navigate', event => {
+    // set global navigate
+    Alpine.store('navigate').start(event.detail.url.href);
+});
+
 // Triggered as the final step of any page navigation...
 document.addEventListener('livewire:navigated', function (e) {
     // initialize common libraries after navigate to other route
     initCommonLibraries();
+
+    // reset
+    setTimeout(() => {
+        Alpine.store('navigate').stop();
+    }, 100);
 });
 
 function initCommonLibraries() {
@@ -123,7 +150,14 @@ function notifEvent(data) {
     });
 }
 
-function loadingEvent(data) {
+function loadingEvent(data = null) {
+    if (data === null) {
+        LoadingProgress({
+            show: true
+        });
+        return;
+    }
+
     LoadingProgress({
         show: true,
         title: data.title,

@@ -11,7 +11,7 @@ return [
         'company_name' => 'HAS Soft',
         'company_name_short' => 'HAS',
         'version' => '1.0.0',
-        'copyright' => '2024 &copy; <a class="text-muted" href="mailto:theadamz91@gmail.com">HAS Soft</a>',
+        'copyright' => '2025 &copy; <a class="text-muted" href="mailto:theadamz91@gmail.com">HAS Soft</a>',
     ],
     'local' => [
         'charset' => 'UTF-8',

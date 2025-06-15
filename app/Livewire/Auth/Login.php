@@ -17,8 +17,8 @@ use Str;
 #[Title('Login')]
 class Login extends Component
 {
-    public string $email = '';
-    public string $password = '';
+    public string $email = 'theadamz91@gmail.com';
+    public string $password = '12345678';
     public bool $remember = false;
 
     protected function rules(): array

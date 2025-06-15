@@ -15,8 +15,7 @@
                         </div>
                         <div class="form-group fv-row">
                             <label class="form-label font-weight-normal mb-1">Name <span class="text-danger">*</span></label>
-                            <input type="text" wire:model="name" id="name" name="name" placeholder="Name"
-                                   value="{{ old('name') ?? '' }}" maxlength="100"
+                            <input type="text" wire:model="name" id="name" name="name" placeholder="Name" maxlength="100"
                                    class="form-control font-weight-normal form-maxlength @error('name') is-invalid @enderror"
                                    autocomplete="off" />
                             @error('name')
@@ -25,8 +24,7 @@
                         </div>
                         <div class="form-group fv-row">
                             <label class="form-label font-weight-normal mb-1">Email <span class="text-danger">*</span></label>
-                            <input type="email" wire:model="email" id="email" name="email" placeholder="Email"
-                                   value="{{ old('email') ?? '' }}" maxlength="255"
+                            <input type="email" wire:model="email" id="email" name="email" placeholder="Email" maxlength="255"
                                    class="form-control font-weight-normal form-maxlength @error('email') is-invalid @enderror"
                                    autocomplete="off" autofocus />
                             @error('email')
@@ -42,8 +40,7 @@
                                         <i class="fas fa-eye-slash" x-show="showPassword"></i>
                                     </button>
                                 </div>
-                                <input :type="showPassword ? 'text' : 'password'" wire:model="password" id="password" name="password" placeholder="Password"
-                                       value="{{ old('password') ?? '' }}" maxlength="100"
+                                <input :type="showPassword ? 'text' : 'password'" wire:model="password" id="password" name="password" placeholder="Password" maxlength="100"
                                        class="form-control font-weight-normal form-maxlength @error('password') is-invalid @enderror"
                                        autocomplete="off" />
                                 @error('password')
@@ -60,8 +57,7 @@
                                         <i class="fas fa-eye-slash" x-show="showPassword"></i>
                                     </button>
                                 </div>
-                                <input :type="showPassword ? 'text' : 'password'" wire:model="password_confirmation" id="password_confirmation" name="password_confirmation" placeholder="Confirm Password"
-                                       value="{{ old('password_confirmation') ?? '' }}" maxlength="100"
+                                <input :type="showPassword ? 'text' : 'password'" wire:model="password_confirmation" id="password_confirmation" name="password_confirmation" placeholder="Confirm Password" maxlength="100"
                                        class="form-control font-weight-normal form-maxlength @error('password_confirmation') is-invalid @enderror"
                                        autocomplete="off" />
                                 @error('password_confirmation')
